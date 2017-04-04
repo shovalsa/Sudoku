@@ -36,4 +36,14 @@ classes:
 1. Board display - contains the code for GUI only.
 2. Evaluator - fetches the solved board and checks if it's correct.
 3. Matrix file creator - creates a new random board.
-4. Sudoku matrix -
+4. Sudoku matrix - the matrix as it was imported from a file and manipulations on it (creating a box, a column, etc.)
+5. sudoku_Game - takes a matrix as an argument, matches an appropriate GUI and evaluates the user's input.
+
+the GUI needs a matrix. => new_gui = GUI(matrix)
+the evaluator takes the output of the GUI and checks its validity. => Evaluator(GUI)
+
+process:
+1. a Sudoku_Game is instantiated with a file name.
+2. The SudokuGame object calls SudokuMatrix to make a matrix out of the file.
+3. the matrix is stored as a SudokuMatrix object.
+4. the SudokuGame instantiates a BoardDisplay object using the matrix in SudokuMatrix.

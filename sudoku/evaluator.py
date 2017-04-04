@@ -1,44 +1,40 @@
 from tkinter import *
-from sudoku.sudoku_matrix import SudokuMatrix
-from sudoku.board_display import BoardDisplay
+from shecodes_execises.sudoku.sudoku_matrix import SudokuMatrix
+# from shecodes_execises.sudoku.board_display import BoardDisplay
 
 
 class Evaluator(object):
-    def __init__(self, board):
-        self.board = board
-        self.newRows = self.createAllRows(self.board.initialBoard)
-        self.solvedBoard = self.getEntries()
 
-    def boxToRow(self, array, row, column):
-        self.boxList = []
-        num_1 = row
-        for x in range(0,3):
-            num_2 = column
-            for y in range(0,3):
-                self.boxList.append(array[num_1][num_2])
-                num_2+=1
-            num_1+=1
-        return self.boxList
-
-    def createAllRows(self, array):
-        rowIndex = [[0, 0], [0, 3], [0, 6], [3, 0], [3, 3], [3, 6], [6, 0], [6, 3], [6, 6]]
-        self.listOfRows = []
-        for item in rowIndex:
-            self.listOfRows.append(self.boxToRow(array, item[0], item[1]))
-        return self.listOfRows
-
-    def getEntries(self):
-        self.solvedSudoku = []
-        for item in self.newRows:
-            if type(item) is Entry:
-                self.solvedSudoku.append(item['textvariable'])
-            elif type(item) is Label:
-                self.solvedSudoku.append(item['text'])
-        return self.solvedSudoku
+    def __init__(self):
+        # self.newRows = SudokuMatrix.createAllRows(self.board.initialBoard)
+        self.leanSet = {1,2,3,4,5,6,7,8,9}
 
 
-    def clearAll(self):
-        print("cleared!")
+    def check_row(self, array):
+        num = 0
+        for item in array:
+            if set(item) != self.leanSet:
+                num +=1
+        return num == 0
 
-    def evaluateGame(self):
-        pass
+
+    def check_column(self, array):
+        num = 0
+        for x in range(0,len(array)):
+            if set(SudokuMatrix.create_column(array, x)) != self.leanSet:
+                num +=1
+        return num == 0
+
+    def check_boxes(self, array):
+        boxIndex = [[0,0], [0,3], [0,6], [3,0], [3,3], [3,6], [6,0], [6,3], [6,6]]
+        num = 0
+        for item in boxIndex:
+            if set(SudokuMatrix.create_box(array, item[0], item[1])) != self.leanSet:
+                num +=1
+        return num == 0
+
+
+    def evaluateGame(self, array):
+        return (self.check_row(array)) and (self.check_column(array)) and (self.check_boxes(array))
+
+
