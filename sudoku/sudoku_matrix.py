@@ -1,12 +1,12 @@
-from random import shuffle, randint
-
-class SudokuMatrix(object): # contains the numbers for the sudoku in an unsolved form.
+"""
+    contains the numbers for the sudoku in an unsolved form.
+"""
+class SudokuMatrix(object):
 
     def __init__(self, source_file):
         self.source_file = source_file
         self.mainList = self.extract_list()
         self.leanSet = {1,2,3,4,5,6,7,8,9}
-        self.allBoxes = self.createAllBoxes(self.mainList)
 
     def extract_list(self): # takes the numbers from a file and creates a 2D array
         self.new_list = []
