@@ -90,6 +90,7 @@ class BoardDisplay(Frame):
 
     def clear_board(self):
         self.new_board = BoardDisplay(self.sMatrix, self.master)
+        self.new_board.display_game()
 
     def callback(self):
         messagebox.showinfo("Error", "Make sure that the entire board \nis filled with numbers (in digits).")
