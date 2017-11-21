@@ -11,5 +11,6 @@ To execute the game:
 004005700
 000000900
 
+(example given in file sudoku_003000000.txt)
 2. Open run_game.py and update your file name.
 3. Run run_game.py
